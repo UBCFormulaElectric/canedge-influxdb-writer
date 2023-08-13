@@ -393,7 +393,7 @@ class MultiFrameDecoder:
         # for J1939, extract PGN and convert to 29 bit CAN ID for use in baseframe
         pgn_hex = "".join("{:02x}".format(x) for x in reversed(row.DataBytes[5:8]))
         pgn = int(pgn_hex, 16)
-        can_id = (6 << 26) | (pgn << 8) | 254
+        can_id = (6 << 26) | (pgn << 8) | row.SA
         return can_id
 
     def get_payload_length(self,row):
@@ -498,7 +498,7 @@ class MultiFrameDecoder:
                     df_raw_res_id_new = pd.DataFrame(frame_list, columns=base_frame.index, index=frame_timestamp_list)
                     df_raw.append(df_raw_res_id_new)
 
-        df_raw = pd.concat(df_raw,join='inner')
+        df_raw = pd.concat(df_raw,join='outer')
         df_raw.index.name = "TimeStamp"
         df_raw = df_raw.sort_index()
         return df_raw

@@ -1,3 +1,20 @@
+# IMPORTANT* FORMULA ELECTRIC INFLUXDB INFO FOR INPUTS.PY
+## InfluxDB Info
+
+**bucket:** 
+'testing' - or whatever new bucket you want
+
+**token:**
+9mvzJStEFCR3X2QxOEvq3U7edH7JjILoejsP1kleoE5OivfwI_evbleELsWIc3ieUoOMhMJTqK438gCayWWMYw==
+
+**Organization ID:**
+cfe7d0974c4b4427
+
+**url:**
+https://us-east-1-1.aws.cloud2.influxdata.com/
+
+*- This info is easy to find using the [guide](https://canlogger.csselectronics.com/canedge-getting-started/log-file-tools/browser-dashboard/influxdb-writer/initial-setup/#ref-initial-setup) - Kyle*
+
 # CANedge InfluxDB Writer - Push CAN Bus Data to InfluxDB
 
 This project lets you DBC decode CAN data from your [CANedge](https://www.csselectronics.com/pages/can-bus-hardware-products) CAN/LIN data logger - and push the data into an InfluxDB database. From here, the data can be visualized in your own customized, open source Grafana dashboards.
@@ -90,7 +107,10 @@ Note: To activate your virtual environment use `env\Scripts\activate` (Linux: `s
 - Add your DBC file(s) to the `dbc_files` folder
 - Update `devices` and `dbc_paths` in `inputs.py` to reflect your added log and DBC files
 - Set `days_offset = None` to ensure your data is written at the correct date
-- Verify that your venv is active and run the script via `python main.py` 
+- Run the script via the `main.bat`
+
+Note: If you're using the free InfluxDB Cloud, there is a limit of 200 unique signals per device - make sure to add a filtered list of signals `inputs.py` or modify your DBC file to contain less than the limit.
+
 
 #### Load from S3
 - Add your DBC file(s) to the `dbc_files` folder
@@ -98,8 +118,10 @@ Note: To activate your virtual environment use `env\Scripts\activate` (Linux: `s
 - Update `devices` in `inputs.py` to reflect your S3 structure i.e. `["your_bucket/device_id"]`
 - Set `days_offset = None` to ensure your data is written at the correct date
 - Update the S3 details in `inputs.py` with your S3 server and set `s3 = True` 
+- Run the script via the `main.bat`
 
 Note: You may want to modify other variables like adding signal filters, changing the resampling or modifying the default start date.
+
 
 #### Import simplified dashboard template 
 - To get started, import the `dashboard-template-simple.json` to visualize your own data

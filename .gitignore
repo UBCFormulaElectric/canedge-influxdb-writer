@@ -12,5 +12,6 @@ build.bat
 *lambda_inputs_test.json*
 *deploy-aws-lambda/env/*
 *ev6-gps.dbc*
+*LOG/*
 
 *canedge-influxdb-writer.zip*

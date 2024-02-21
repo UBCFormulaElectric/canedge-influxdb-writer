@@ -9,7 +9,7 @@ class SetupInflux:
         self.debug = debug
         self.verbose = verbose
         self.res = res
-        self.client = InfluxDBClient(url=self.influx_url, token=self.token, org=self.org_id, debug=False)
+        self.client = InfluxDBClient(url=self.influx_url, token=self.token, org=self.org_id, debug=False, timeout=30*1000)
         self.test = self.test_influx()
         return
 
@@ -100,12 +100,11 @@ class SetupInflux:
         if self.test == 0:
             print("Please check your InfluxDB credentials")
             return
-
         with self.client.write_api(
                 write_options=WriteOptions(
-                    batch_size=20_000,
+                    batch_size=10_000,
                     flush_interval=1_000,
-                    jitter_interval=0,
+                    jitter_interval=5,
                     retry_interval=5_000,
                 )
         ) as _write_client:

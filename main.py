@@ -9,6 +9,7 @@ from utils import (
 )
 from utils_db import SetupInflux
 import inputs as inp
+from datetime import datetime
 
 # initialize connection to InfluxDB + get latest data entries per device
 influx = SetupInflux(inp.influx_url, inp.token, inp.org_id, inp.influx_bucket, inp.res)
@@ -18,6 +19,7 @@ start_times = influx.get_start_times(inp.devices, inp.default_start, inp.dynamic
 fs = setup_fs(inp.s3, inp.key, inp.secret, inp.endpoint, inp.region, passwords=inp.pw)
 db_list = load_dbc_files(inp.dbc_paths)
 log_files = list_log_files(fs, inp.devices, start_times, True, inp.pw)
+print(log_files)
 
 # process log files and write extracted signals to InfluxDB
 proc = ProcessData(fs, db_list, inp.signals, inp.days_offset)
@@ -36,3 +38,6 @@ for log_file in log_files:
 
     df_phys = restructure_data(df_phys,inp.res)
     influx.write_signals(device_id, df_phys)
+
+    time = datetime.now()
+    print(str(time))

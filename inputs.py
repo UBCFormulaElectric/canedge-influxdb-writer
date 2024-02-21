@@ -33,7 +33,7 @@ region = "s3_region" # only relevant if you are using more recent builds of MinI
 # -----------------------------------------------
 # if dynamic = True, data is loaded dynamically based on most recent data in InfluxDB - else default_start is used
 dynamic = True
-default_start = "2023-08-04 00:00:00"
+default_start = "2023-11-13 00:00:00"
 days_offset = None  # offsets data to start at 'today - days_offset'. Set to None to use original timestamps
 
 # if you're using data encryption, you can add the password below

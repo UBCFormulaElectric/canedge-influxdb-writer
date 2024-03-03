@@ -13,7 +13,7 @@ devices = ["LOG/E4DBBE64"]
 # specify DBC paths and a list of signals to process ([]: include all signals)
 # optionally include signal prefixes to make CAN ID, PGN and/or BusChannel explicit
 dbc_paths = ["dbc_files/CanMsgs.dbc"]
-signals = []
+signals = ["INVL_CommandedTorque", "DCM_RightInverterTorqueCommand", "DCM_LeftInverterTorqueCommand"]
 can_id_prefix = False
 pgn_prefix = False
 bus_prefix = False
@@ -32,8 +32,8 @@ region = "s3_region" # only relevant if you are using more recent builds of MinI
 
 # -----------------------------------------------
 # if dynamic = True, data is loaded dynamically based on most recent data in InfluxDB - else default_start is used
-dynamic = True
-default_start = "2023-11-13 00:00:00"
+dynamic = False
+default_start = "2024-02-17 00:00:00"
 days_offset = None  # offsets data to start at 'today - days_offset'. Set to None to use original timestamps
 
 # if you're using data encryption, you can add the password below

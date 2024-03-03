@@ -9,7 +9,7 @@ class SetupInflux:
         self.debug = debug
         self.verbose = verbose
         self.res = res
-        self.client = InfluxDBClient(url=self.influx_url, token=self.token, org=self.org_id, debug=False, timeout=30*1000)
+        self.client = InfluxDBClient(url=self.influx_url, token=self.token, org=self.org_id, debug=False)#, timeout=30*1000)
         self.test = self.test_influx()
         return
 

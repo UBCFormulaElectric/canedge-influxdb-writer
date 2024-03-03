@@ -10,7 +10,7 @@ def setup_fs(s3, key="", secret="", endpoint="", region="",cert="", passwords={}
     if s3:
         import s3fs
 
-        block_size = 55 * 1024 * 1024
+        block_size = 70 * 1024 * 1024
 
         if "amazonaws" in endpoint:
             fs = s3fs.S3FileSystem(key=key, secret=secret, default_block_size=block_size)

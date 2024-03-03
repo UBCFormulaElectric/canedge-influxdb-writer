@@ -26,7 +26,7 @@ proc = ProcessData(fs, db_list, inp.signals, inp.days_offset)
 
 for log_file in log_files:
     df_raw, device_id = proc.get_raw_data(log_file, inp.pw)
-
+    print(df_raw)
     if inp.tp_type != "":
         tp = MultiFrameDecoder(inp.tp_type)
         df_raw = tp.combine_tp_frames(df_raw)
@@ -40,4 +40,3 @@ for log_file in log_files:
     influx.write_signals(device_id, df_phys)
 
     time = datetime.now()
-    print(str(time))
